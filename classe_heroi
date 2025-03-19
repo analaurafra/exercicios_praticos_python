@@ -1,0 +1,40 @@
+// Definindo a classe Heroi
+class Heroi {
+  // Construtor que inicializa as propriedades do herói
+  constructor(nome, idade, tipo) {
+    this.nome = nome;
+    this.idade = idade;
+    this.tipo = tipo;
+  }
+
+  // Método atacar que exibe a mensagem personalizada
+  atacar() {
+    let ataque = "";
+
+    // Dependendo do tipo do herói, escolhemos o tipo de ataque
+    if (this.tipo === "mago") {
+      ataque = "usou magia";
+    } else if (this.tipo === "guerreiro") {
+      ataque = "usou espada";
+    } else if (this.tipo === "monge") {
+      ataque = "usou artes marciais";
+    } else if (this.tipo === "ninja") {
+      ataque = "usou shuriken";
+    }
+
+    // Exibindo a mensagem
+    console.log(`o ${this.tipo} atacou usando ${ataque}`);
+  }
+}
+
+// Criando instâncias de diferentes tipos de heróis
+const heroi1 = new Heroi("Gandalf", 1000, "mago");
+const heroi2 = new Heroi("Arthur", 30, "guerreiro");
+const heroi3 = new Heroi("Shaolin", 40, "monge");
+const heroi4 = new Heroi("Ryu", 25, "ninja");
+
+// Chamando o método atacar para cada herói
+heroi1.atacar();  // Output: o mago atacou usando magia
+heroi2.atacar();  // Output: o guerreiro atacou usando espada
+heroi3.atacar();  // Output: o monge atacou usando artes marciais
+heroi4.atacar();  // Output: o ninja atacou usando shuriken
