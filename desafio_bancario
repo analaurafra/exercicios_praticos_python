@@ -1,0 +1,68 @@
+class ContaBancaria:
+    def __init__(self):
+        self.saldo = 0.0  # saldo da conta bancária
+        self.depositos = []  # lista para armazenar depósitos
+        self.saques = []  # lista para armazenar saques
+        self.saques_diarios = 0  # contador de saques diários
+
+    def depositar(self, valor):
+        """Depósito de um valor positivo na conta."""
+        if valor > 0:
+            self.saldo += valor
+            self.depositos.append(valor)
+            print(f"Depósito de R$ {valor:.2f} realizado com sucesso!")
+        else:
+            print("O valor do depósito deve ser positivo!")
+
+    def sacar(self, valor):
+        """Realizar o saque de até R$ 500 por saque e com limite de 3 saques diários."""
+        if self.saques_diarios >= 3:
+            print("Você já atingiu o limite de saques diários!")
+            return
+
+        if valor <= 500 and valor <= self.saldo:
+            self.saldo -= valor
+            self.saques.append(valor)
+            self.saques_diarios += 1
+            print(f"Saque de R$ {valor:.2f} realizado com sucesso!")
+        elif valor > 500:
+            print("O valor máximo por saque é de R$ 500,00!")
+        else:
+            print("Saldo insuficiente para realizar o saque!")
+
+    def exibir_extrato(self):
+        """Exibe o extrato de depósitos e saques realizados."""
+        print("\n===== EXTRATO =====")
+        
+        if not self.depositos and not self.saques:
+            print("Não foram realizadas movimentações.")
+        else:
+            if self.depositos:
+                print("Depósitos realizados:")
+                for deposito in self.depositos:
+                    print(f"R$ {deposito:.2f}")
+            
+            if self.saques:
+                print("\nSaques realizados:")
+                for saque in self.saques:
+                    print(f"R$ {saque:.2f}")
+            
+            print(f"\nSaldo atual: R$ {self.saldo:.2f}")
+        
+        print("===================")
+
+
+# Testando o sistema bancário
+if __name__ == "__main__":
+    conta = ContaBancaria()
+
+    # Realizando depósitos
+    conta.depositar(1000.0)
+    conta.depositar(500.0)
+
+    # Realizando saques
+    conta.sacar(200.0)
+    conta.sacar(400.0)
+
+    # Exibindo o extrato
+    conta.exibir_extrato()
